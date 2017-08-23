@@ -1,0 +1,7 @@
+cat 20170817.act | grep 123.29.4.113 > /tmp/hpg_123.29.4.113_20170817
+cat /tmp/hpg_123.29.4.113_20170817 | grep '"Stop"' | awk -F"," '{print $9 "," $17}' > /tmp/hpg_123.29.4.113_20170817.temp 
+cat /tmp/hpg_123.29.4.113_20170817.temp |  tr -d '"'  | awk -F"," '{ if ($2 < 3600) print "Account,Duration Time:  " $1 "," $2}' | sort > /tmp/hpg_123.29.4.113_20170817_sort.log
+cat /tmp/hpg_123.29.4.113_20170817_sort.log | wc -l
+
+cat /tmp/hpg_123.29.4.113_20170817.temp |  tr -d '"'  | awk -F"," '{ if ($2 < 3600) print $1 }' | sort > /tmp/tmp
+cat /tmp/tmp | uniq -c | sort -r
