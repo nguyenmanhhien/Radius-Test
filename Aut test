@@ -1,0 +1,16 @@
+Test configuration
+[Search/DoSearch]
+Base = o=vnn,c=vn
+Scope = 2
+Filter=(& \
+    (uid=<user-name>)(|(status-id=active)(status-id=suspended))(|(service-id=ftth)(service-id=adsl)) \
+    (| \
+        (type-id=public) \
+        (& \
+            (restriction-id=RADSL) \
+            (|(nas-port-id=<nas-port>) \
+              (&(restriction-id=RDSLAMIP)(nas-port-id-id=<nas-port-id>)) \     
+            ) \ 
+        ) \
+    ) \
+)
